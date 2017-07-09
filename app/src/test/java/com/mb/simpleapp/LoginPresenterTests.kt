@@ -8,8 +8,7 @@ import io.reactivex.Completable
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito
-import org.mockito.Mockito.mock
-import org.mockito.Mockito.anyString
+import org.mockito.Mockito.*
 
 class LoginPresenterTests {
     lateinit var userInteractor:UserInteractor
@@ -20,5 +19,13 @@ class LoginPresenterTests {
         userInteractor = mock(UserInteractor::class.java)
         view = mock(LoginView::class.java)
         presenter = LoginPresenterImpl(userInteractor,view)
+    }
+
+    @Test fun test_successfulLogin(){
+        Mockito.`when`(userInteractor.login(anyString(),anyString())).thenReturn(Completable.complete())
+        presenter.initLogin("tom@test.com","someLongPass")
+        verify(view).showProgress()
+        verify(view).hideProgress()
+        verify(view).onLoginSuccess()
     }
 }
