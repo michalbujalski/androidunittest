@@ -28,4 +28,18 @@ class LoginPresenterTests {
         verify(view).hideProgress()
         verify(view).onLoginSuccess()
     }
+
+    @Test fun test_validation(){
+        presenter.initLogin("","someLongPass")
+        verify(view).showEmailEmptyError()
+
+        presenter.initLogin("tom@test","someLongPass")
+        verify(view).showImproperEmailFormat()
+
+        presenter.initLogin("tom@test.com","as")
+        verify(view).showPasswordToShort()
+
+        presenter.initLogin("tom@test.com","")
+        verify(view).showPasswordEmpty()
+    }
 }
