@@ -42,4 +42,12 @@ class LoginPresenterTests {
         presenter.initLogin("tom@test.com","")
         verify(view).showPasswordEmpty()
     }
+
+    @Test fun test_errorHandling(){
+        val errMsg = "Improper argument"
+        Mockito.`when`(userInteractor.login(anyString(),anyString()))
+                .thenReturn(Completable.error(IllegalArgumentException(errMsg)))
+        presenter.initLogin("tom@example.com","someLongPass")
+        verify(view).onLoginError(errMsg)
+    }
 }
