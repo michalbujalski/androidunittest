@@ -1,6 +1,6 @@
 package com.mb.simpleapp
 
-import com.mb.simpleapp.domain.UserInteractor
+import com.mb.simpleapp.domain.users.UserInteractor
 import com.mb.simpleapp.features.login.LoginPresenter
 import com.mb.simpleapp.features.login.LoginPresenterImpl
 import com.mb.simpleapp.features.login.LoginView
@@ -11,7 +11,7 @@ import org.mockito.Mockito
 import org.mockito.Mockito.*
 
 class LoginPresenterTests {
-    lateinit var userInteractor:UserInteractor
+    lateinit var userInteractor: UserInteractor
     lateinit var presenter:LoginPresenter
     lateinit var view:LoginView
 

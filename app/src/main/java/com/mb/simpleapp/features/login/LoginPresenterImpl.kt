@@ -1,6 +1,6 @@
 package com.mb.simpleapp.features.login
 
-import com.mb.simpleapp.domain.UserInteractor
+import com.mb.simpleapp.domain.users.UserInteractor
 
 
 class LoginPresenterImpl(val userInteractor: UserInteractor, val view:LoginView):LoginPresenter {

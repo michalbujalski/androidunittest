@@ -6,9 +6,8 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.mb.simpleapp.R
-import com.mb.simpleapp.data.UserDataStore
-import com.mb.simpleapp.data.UserDataStoreImpl
-import com.mb.simpleapp.domain.UserInteractorImpl
+import com.mb.simpleapp.data.users.UserDataStoreImpl
+import com.mb.simpleapp.domain.users.UserInteractorImpl
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity:AppCompatActivity(),LoginView {
