@@ -5,5 +5,5 @@ import io.reactivex.Observable
 import io.reactivex.Single
 
 interface ContactsInteractor {
-    fun syncAll(): Observable<List<ContactViewModel>>
+    fun syncAll(): Single<List<ContactViewModel>>
 }

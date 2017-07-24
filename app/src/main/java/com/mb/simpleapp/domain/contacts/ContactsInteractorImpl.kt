@@ -6,12 +6,12 @@ import io.reactivex.Observable
 import io.reactivex.Single
 
 class ContactsInteractorImpl(val contactDataStore: ContactDataStore):ContactsInteractor {
-    override fun syncAll(): Observable<List<ContactViewModel>> {
+    override fun syncAll(): Single<List<ContactViewModel>> {
         return Observable
                 .fromIterable(contactDataStore.getAll())
                 .map{
-                    contactData ->
-                    ContactViewModel(contactData.name,contactData.phoneNum,contactData.isFav)
+                    (name, phoneNum, isFav) ->
+                    ContactViewModel(name, phoneNum, isFav)
                 }
                 .toList()
     }
