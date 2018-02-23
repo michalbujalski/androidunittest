@@ -4,6 +4,7 @@ import com.mb.simpleapp.domain.contacts.ContactsInteractor
 import com.mb.simpleapp.features.contacts.ContactsListPresenter
 import com.mb.simpleapp.features.contacts.ContactsListView
 import com.mb.simpleapp.models.ContactViewModel
+import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.Single
 import org.junit.Before
 import org.junit.Test
@@ -15,7 +16,7 @@ class ContactsPresenterTests{
     @Inject lateinit var contactsInteractor:ContactsInteractor
     @Inject lateinit var view:ContactsListView
 
-    lateinit var presenter:ContactsListPresenter
+    private lateinit var presenter:ContactsListPresenter
 
     @Before fun setUp(){
         presenter = ContactsListPresenter()
@@ -27,7 +28,7 @@ class ContactsPresenterTests{
 
 
     @Test fun simpleTest(){
-        Mockito.`when`(contactsInteractor.syncAll()).thenReturn(Single.just(ArrayList<ContactViewModel>()))
+        whenever(contactsInteractor.syncAll()).thenReturn(Single.just(ArrayList<ContactViewModel>()))
         presenter.fetchContacts()
         Mockito.verify(view).setData(Mockito.anyList())
     }

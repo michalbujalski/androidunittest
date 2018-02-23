@@ -4,6 +4,7 @@ import com.mb.simpleapp.domain.users.UserInteractor
 import com.mb.simpleapp.features.login.LoginPresenter
 import com.mb.simpleapp.features.login.LoginPresenterImpl
 import com.mb.simpleapp.features.login.LoginView
+import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.Completable
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.schedulers.Schedulers
@@ -14,9 +15,9 @@ import org.mockito.Mockito
 import org.mockito.Mockito.*
 
 class LoginPresenterTests {
-    lateinit var userInteractor: UserInteractor
-    lateinit var presenter:LoginPresenter
-    lateinit var view:LoginView
+    private lateinit var userInteractor: UserInteractor
+    private lateinit var presenter:LoginPresenter
+    private lateinit var view:LoginView
 
     @JvmField @Rule val rule:RxSchedulerRule = RxSchedulerRule()
 
@@ -27,7 +28,7 @@ class LoginPresenterTests {
     }
 
     @Test fun test_successfulLogin(){
-        Mockito.`when`(userInteractor.login(anyString(),anyString())).thenReturn(Completable.complete())
+        whenever(userInteractor.login(anyString(),anyString())).thenReturn(Completable.complete())
         presenter.initLogin("tom@test.com","someLongPass")
         verify(view).showProgress()
         verify(view).hideProgress()
@@ -50,7 +51,7 @@ class LoginPresenterTests {
 
     @Test fun test_errorHandling(){
         val errMsg = "Improper argument"
-        Mockito.`when`(userInteractor.login(anyString(),anyString()))
+        whenever(userInteractor.login(anyString(),anyString()))
                 .thenReturn(Completable.error(IllegalArgumentException(errMsg)))
         presenter.initLogin("tom@example.com","someLongPass")
         verify(view).onLoginError(errMsg)

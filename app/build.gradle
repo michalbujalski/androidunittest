@@ -44,6 +44,7 @@ dependencies {
     testImplementation "com.google.dagger:dagger:$DAGGER"
     kaptTest "com.google.dagger:dagger-compiler:$DAGGER"
     testAnnotationProcessor "com.google.dagger:dagger-compiler:$DAGGER"
+    testCompile "com.nhaarman:mockito-kotlin:1.5.0"
 
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'

@@ -19,7 +19,7 @@ ext{
     DAGGER = "2.11"
     RXJAVA = "2.1.2"
     RXANDROID = "2.0.1"
-    MOCKITO = "2.8.47"
+    MOCKITO = "2.15.0"
 }
 
 allprojects {
