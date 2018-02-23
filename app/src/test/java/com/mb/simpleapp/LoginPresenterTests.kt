@@ -5,7 +5,10 @@ import com.mb.simpleapp.features.login.LoginPresenter
 import com.mb.simpleapp.features.login.LoginPresenterImpl
 import com.mb.simpleapp.features.login.LoginView
 import io.reactivex.Completable
+import io.reactivex.android.plugins.RxAndroidPlugins
+import io.reactivex.schedulers.Schedulers
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mockito
 import org.mockito.Mockito.*
@@ -14,6 +17,8 @@ class LoginPresenterTests {
     lateinit var userInteractor: UserInteractor
     lateinit var presenter:LoginPresenter
     lateinit var view:LoginView
+
+    @JvmField @Rule val rule:RxSchedulerRule = RxSchedulerRule()
 
     @Before fun setUp(){
         userInteractor = mock(UserInteractor::class.java)

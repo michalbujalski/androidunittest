@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity(), ContactsListView {
     val activityComponent: ActivityComponent by lazy{
         appComponent.with(ActivityModule(this))
     }
-    val contactsListPresenterComponent: ContactsListPresenterComponent by lazy{
+    private val contactsListPresenterComponent: ContactsListPresenterComponent by lazy{
         appComponent.with(ContactsListPresenterModule(this))
     }
     val presenter: ContactsListPresenter = ContactsListPresenter()

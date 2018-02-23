@@ -1,6 +1,7 @@
 package com.mb.simpleapp.features.login
 
 import com.mb.simpleapp.domain.users.UserInteractor
+import com.mb.simpleapp.utils.ioCompletable
 
 
 class LoginPresenterImpl(val userInteractor: UserInteractor, val view:LoginView):LoginPresenter {
@@ -9,6 +10,7 @@ class LoginPresenterImpl(val userInteractor: UserInteractor, val view:LoginView)
         view.showProgress()
         userInteractor
                 .login(email,password)
+                .ioCompletable()
                 .subscribe(
                         {
                             view.hideProgress()
