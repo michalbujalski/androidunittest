@@ -9,4 +9,8 @@ interface LoginView{
     fun showPasswordToShort()
     fun showProgress()
     fun hideProgress()
+    fun setEmail(email: String)
+    fun setPassword(password: String)
+    fun setCanSubmit(canSubmit:Boolean)
+    fun showSuccess()
 }
