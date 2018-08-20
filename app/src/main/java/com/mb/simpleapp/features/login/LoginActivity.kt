@@ -3,20 +3,40 @@ package com.mb.simpleapp.features.login
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.widget.Toast
 import com.mb.simpleapp.R
 import com.mb.simpleapp.data.users.UserDataStoreImpl
 import com.mb.simpleapp.domain.users.UserInteractorImpl
+import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_login.*
+import tea.Program
 
 class LoginActivity:AppCompatActivity(),LoginView {
+    override fun showSuccess() {
+        Toast.makeText(this,"Log in succes",Toast.LENGTH_SHORT).show()
+    }
+
+    override fun setEmail(email: String) {
+        this.email.setText(email)
+    }
+
+    override fun setPassword(password: String) {
+        this.password.setText(password)
+    }
+
+    override fun setCanSubmit(canSubmit: Boolean) {
+        this.submit.isEnabled = canSubmit
+    }
 
     private lateinit var presenter:LoginPresenter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        presenter = LoginPresenterImpl(UserInteractorImpl(UserDataStoreImpl()),this)
+        val program = Program(AndroidSchedulers.mainThread())
+        presenter = LoginPresenterImpl(UserInteractorImpl(UserDataStoreImpl()),this, program)
         submit.setOnClickListener({
             presenter.initLogin(email.text.toString(),password.text.toString())
         })
@@ -31,7 +51,7 @@ class LoginActivity:AppCompatActivity(),LoginView {
     }
 
     override fun onLoginError(message: String) {
-
+        Snackbar.make(submit, message, Snackbar.LENGTH_SHORT)
     }
 
     override fun showEmailEmptyError() {
@@ -59,8 +79,8 @@ class LoginActivity:AppCompatActivity(),LoginView {
 
     override fun hideProgress() {
         email.isEnabled = true
-        password.isEnabled = false
-        submit.isEnabled = false
+        password.isEnabled = true
+        submit.isEnabled = true
         progress.post{progress.visibility = View.GONE}
     }
 

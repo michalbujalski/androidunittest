@@ -7,7 +7,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0-alpha7'
+        classpath 'com.android.tools.build:gradle:3.1.4'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -17,6 +17,11 @@ buildscript {
 
 ext{
     DAGGER = "2.11"
+    RXJAVA = "2.2.0"
+    RXANDROID = "2.0.2"
+    MOCKITO = "2.15.0"
+    RXRELAY = "2.0.0"
+    SUPPORT = "27.1.1"
 }
 
 allprojects {
