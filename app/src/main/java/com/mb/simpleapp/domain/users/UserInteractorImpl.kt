@@ -7,12 +7,12 @@ import io.reactivex.Single
 import java.util.concurrent.TimeUnit
 
 class UserInteractorImpl(val userDataStore: UserDataStore) : UserInteractor {
-    override fun login(login:String, password:String): Completable {
+    override fun login(login:String, password:String): Single<Boolean> {
         val userData = UserData("Tom", "tom@example.com")
         return Single
                 .just(userData)
                 .map{userDataStore.save(userData)}
                 .delay(3,TimeUnit.SECONDS)
-                .toCompletable()
+                .map { true }
     }
 }

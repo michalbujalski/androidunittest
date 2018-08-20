@@ -8,7 +8,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 27
-    buildToolsVersion "27.0.2"
+    buildToolsVersion "27.0.3"
     defaultConfig {
         applicationId "com.mb.simpleapp"
         minSdkVersion 19
@@ -31,12 +31,14 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:27.0.2'
+    implementation "com.android.support:appcompat-v7:$SUPPORT"
+    implementation "com.android.support:design:$SUPPORT"
     implementation "io.reactivex.rxjava2:rxjava:$RXJAVA"
     implementation "io.reactivex.rxjava2:rxandroid:$RXANDROID"
 
     implementation "com.google.dagger:dagger:$DAGGER"
     kapt "com.google.dagger:dagger-compiler:$DAGGER"
+    implementation "com.jakewharton.rxrelay2:rxrelay:$RXRELAY"
 
     //test
     testImplementation "org.mockito:mockito-core:$MOCKITO"
